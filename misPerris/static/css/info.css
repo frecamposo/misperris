@@ -1,0 +1,27 @@
+
+
+#info{
+    background: #333;
+    margin-top: 45px;
+    color: white;
+    text-align: center;
+    font-family: cursive;
+    padding: 20px;
+}
+
+#info .contenedor img{
+    width: 180px;
+    height: 180px;
+    border: solid 7px white;
+    border-radius: 50%;
+}
+
+#info .contenedor{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#info .contenedor article{
+    margin:30px;
+}

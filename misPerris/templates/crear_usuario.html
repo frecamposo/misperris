@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static%}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+    <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+{% endblock css %}
+
+{% block contenido %}
+        <!-- sector de bienvenida-->
+        <section id="bienvenida">
+            <h2>Creacion Cuenta de Usuario</h2>
+            
+        </section>
+        <!-- seccion del formulario  -->
+        <section id="formulario">
+
+            <form class="form-registro" action="{% url 'CREARU' %}" method="post">
+                {% csrf_token %}
+                <h2 class="form-titulo">Creacion cuenta de usuario</h2>
+
+                <div class="contenedor-input">
+                    <input class="col-p" type="text" name="txtNombre" id="txtNombre" placeholder="ingrese nombre " required minlength="5" pattern="[A-Za-z ]{5,40}" title="solo letras entre 5 y 40 caracteres">
+                    <input class="col-p" type="text" name="txtApellido" id="txtApellido" placeholder="ingrese  apellido" required minlength="5" pattern="[A-Za-z ]{5,40}" title="solo letras entre 5 y 40 caracteres">
+                    <input class="col-p" type="email" name="txtEmail" id="" placeholder="ingrese email" required minlength="8">
+                    <input class="col-p" type="text" name="txtUsuario" id="" placeholder="ingrese usuario" required minlength="8" maxlength="12">
+                    <input class="col-p" type="password" name="txtPass1" id="" placeholder="ingrese password" required minlength="5" maxlength="10">
+                    <input class="col-p" type="password" name="txtPass2" id="" placeholder="repita password" required minlength="5" maxlength="10">
+               
+                    <input class="btn-registro" type="submit" value="Registrar">
+                    <input class="btn-registro" type="reset" value="Limpiar">
+                </div>
+            </form>
+            <div style="text-align: center;color: red;font-size: xx-large;">
+                {{mensaje}}
+            </div>
+        </section>
+
+{% endblock contenido %}    
+
+
+    

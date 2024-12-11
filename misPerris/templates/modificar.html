@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static%}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+<script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+{% endblock css %}
+
+{% block contenido %}
+<!-- sector de bienvenida-->
+<section id="bienvenida">
+    <h2>Sistema de Administracion de mascotas</h2>
+    <h3>Bienvenido: {{user.first_name}} {{user.last_name}} por apoyar la causa</h3>
+    <h4>Usuario: {{user.username}}</h4>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique excepturi voluptate, quidem ipsa
+        velit, laboriosam at, aperiam quibusdam recusandae vero molestiae illo. Repellendus in amet nihil
+        necessitatibus, error voluptatum a.</p>
+</section>
+<!-- seccion del formulario  -->
+<section id="formulario">
+    <script src="{% static 'js/validaciones.js' %}"></script>
+    <form class="form-registro" action="{% url 'MODIFICACION' %}" method="POST" onsubmit="return validar()"
+        enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="form-titulo">Modificar Mascota</h2>
+
+        <div class="contenedor-input">
+            <input class="col-p" style="margin: 10px;" type="text" name="txtNombre" id="txtNombre"
+                placeholder="ingrese nombre" required minlength="5" pattern="[A-Za-z ]{5,25}"
+                title="solo letras entre 5 y 25 caracteres" value="{{mascota.nombre}}">
+            <input class="col-p" style="margin: 10px;" type="number" name="txtEdad" id="txtEdad" required
+                placeholder="ingrese edad" value="{{mascota.edad}}">
+            <textarea class="col-g" style="margin: 10px;" name="txtDesc" id="txtDesc" cols="30" rows="5">{{mascota.descripcion}}</textarea>
+            
+           <div style="margin: 10px;"> Imagen Actual: <a href="{{mascota.imagen.url}}">{{mascota.imagen.url}}</a></div> 
+            <input class="col-g" type="file" name="txtImg" id="txtImg">
+            
+            <select class="col-g" style="margin: 10px;padding: 15px;" name="cboCategoria" id="cboCategoria">
+                {% for reg in categorias %}
+                    {% if reg.nombre == mascota.categoria.nombre %}
+                        <option selected value="{{reg.nombre}}">{{reg.nombre}}</option>
+                    {% else %}
+                        <option value="{{reg.nombre}}">{{reg.nombre}}</option>
+                    {% endif %}
+                
+                {% endfor %}
+            </select>
+            
+            <input class="btn-registro" type="submit" value="Modificar">
+            <input class="btn-registro" type="button" value="Cancelar">
+        </div>
+    </form>
+
+</section>
+
+</main>
+<div id="listado" style="text-align: center;color: white;background-color: red;font-size: xx-large;">
+    {{mensaje}}
+</div>
+
+{% endblock contenido %}

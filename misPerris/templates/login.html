@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static%}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+    <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+{% endblock css %}
+
+{% block contenido %}
+        <!-- sector de bienvenida-->
+        <section id="bienvenida">
+            <h2>Inicio de Sesion en el Sistema Mis Perris</h2>
+        </section>
+        <!-- seccion del formulario  -->
+        <section id="formulario">
+
+            <form class="form-registro" action="{% url 'LOGIN' %}" method="post">
+                {% csrf_token %}
+                <h2 class="form-titulo">Login de Acceso</h2>
+
+                <div class="contenedor-input">
+                    <input class="col-g" type="text" name="txtUsuario" id="" placeholder="ingrese usuario" required minlength="1" >
+                    <input class="col-g" type="password" name="txtPass" id="" placeholder="ingrese password" required minlength="1">
+                   
+                    <input class="btn-registro" type="submit" value="Ingresar">
+                    <input class="btn-registro" type="reset" value="Limpiar">
+                </div>
+            </form>
+
+        </section>
+  
+{% endblock contenido %}    
+
+   
+    
+    
+    

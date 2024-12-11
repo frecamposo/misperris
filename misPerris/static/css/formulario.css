@@ -1,0 +1,55 @@
+
+#formulario{
+    background: rgb(6, 6, 104);
+    padding: 40px;
+}
+.form-titulo{
+    background: burlywood;
+    font-family: cursive;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    border-bottom: solid 5px tomato;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.form-registro{
+    background: turquoise;
+    width: 95%;
+    margin:auto;
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.contenedor-input{
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* creacion de columnas tipo bootstarp */
+
+.col-p{
+    width: 40%;
+}
+.col-g{
+    width: 100%;
+}
+
+/**********************************************/
+
+.btn-registro{
+    background: brown;
+    color: white;
+    margin:auto;
+}
+
+#mensaje{
+    background: red;color: white;margin: auto;font-family: cursive;text-align: center;margin-top: 14px;
+}

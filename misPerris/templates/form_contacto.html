@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Perris</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/formulario.css">
+ 
+    <script src="lib _jqv/jquery.js"></script>
+    <script src="dist_jqv/jquery.validate.min.js"></script>
+</head>
+
+<body>
+    <!-- cabecera de la pagina -->
+    <header>
+        <!-- contenedor que almacena el titulo MIS PERRIS y el Menu-->
+        <div class="contenedor">
+            <h1 class="icon-guidedog">Mis Perris</h1>
+            <!-- control que permite visualizar el menu lateral (MOVIL)-->
+            <input type="checkbox" name="" id="menu-bar">
+            <label class="icon-th-list" for="menu-bar"></label>
+            <!-- menu -->
+            <nav class="menu">
+                <a href="index.html">Inicio</a>
+                <a href="galeria.html">Galeria</a>
+                <a href="formulario.html">Formulario</a>
+                <a href="">Quienes Somos</a>
+            </nav>
+        </div>
+    </header>
+    <!--sector del main (contenido de la pagina )-->
+    <main>
+        <!-- banner superior con imagen del perro y texto flotando sobre ella -->
+        <section id="banner">
+            <img src="img/perro1.jpg" alt="">
+            <div class="contenedor">
+                <h2>Mascotas felices en mis perris</h2>
+                <p>Cual es la mejor mascota para usted</p>
+                <a href="">Leer Mas</a>
+            </div>
+        </section>
+        <!-- sector de bienvenida-->
+        <section id="bienvenida">
+            <h2>Formulario de contacto</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique excepturi voluptate, quidem ipsa
+                velit, laboriosam at, aperiam quibusdam recusandae vero molestiae illo. Repellendus in amet nihil
+                necessitatibus, error voluptatum a.</p>
+        </section>
+        <!-- seccion del formulario  -->
+
+        <script>
+            
+
+            $(document).ready(function() {
+                $("#formu").validate({
+                    rules:{
+                        txtRut: "required",
+                        txtNombreCompleto: "required",
+                        txtUsuario: {
+                            required : true,
+                            minlength : 5
+                        },
+                        txtPass2:{
+                            required: true,
+                            minlength: 5,
+                            equalTo: "#txtPass1"
+                        }
+                    },
+                    messages : {
+                        txtUsuario:"por favor ingresar un dato minimo 5 caracteres",
+                        txtPass2:{
+                            required: "la paswword es requerida",
+                            minlength: "minimo de largo de 5 caracteres",
+                            equalTo:"las contraseñas no son iguales"
+                        }
+                    }
+                });
+            });
+        </script>
+        <script>
+           /* $(document).ready(function() {
+                
+                $("#formu").submit(function() {
+
+                    var mensaje ="";
+                    var largo =$("#txtNombreCompleto").val().trim().length;
+
+                    if (largo==0) {
+                        mensaje="el nombre no posee datos";
+                    }
+
+                    if (mensaje !="") {
+                        $("#mensaje").html(mensaje);
+                        event.preventDefault(); // cancela el evento de "submit"
+                    }
+                });
+    
+            });*/
+        </script>
+        <section id="formulario">
+            <form class="form-registro" action="" method="post" id="formu">
+                <h2 class="form-titulo">Creacion cuenta de usuario</h2>
+                <div class="contenedor-input">
+                    <input class="col-sm" type="text" name="txtRut" id="txtRut" placeholder="ingrese rut" >
+                    <input class="col-sm" type="text" name="txtNombreCompleto" id="txtNombreCompleto" placeholder="ingrese nombre y apellido" >
+                    <input class="col-sm" type="date" name="txtFechaNaci" id="txtFechaNaci" required>
+                    <input class="col-sm" type="email" name="txtEmail" id="" placeholder="ingrese email" required minlength="8">
+                    <label class="col-sm" for="txtUsuario">Usuario</label>
+                    <input class="col-sm" type="text" name="txtUsuario" id="" placeholder="ingrese usuario">
+                    <label class="col-sm" for="txtPass1">Password:</label>
+                    <input class="col-sm" type="password" name="txtPass1" id="txtPass1" placeholder="ingrese password" required minlength="5" maxlength="10">
+                    <label class="col-sm" for="txtPass2">Confirmar Password:</label>
+                    <input class="col-sm" type="password" name="txtPass2" id="txtPass1" placeholder="ingrese password" required minlength="5" maxlength="10">
+                    <input class="col-sm" type="text" name="txtFono" id="" placeholder="ingrese fono">
+
+                    <input class="btn-registro" type="submit" id="enviar" value="Registrar">
+                    <input class="btn-registro" type="reset"  id="limpiar" value="Limpiar">
+                </div>
+            </form>
+        </section>
+        <div id="mensaje"></div>
+    </main>
+    
+ 
+    <!-- sector del pie de pagina-->
+    <footer>
+        <div class="contenedor">
+            <p>Mis Perris - Desarrollo Web</p>
+        </div>
+    </footer>
+    <script src="js/scripts.js"></script>
+   
+</body>
+
+</html>

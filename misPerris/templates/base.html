@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Perris</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    {% block css %}
+    
+    {% endblock css %}
+</head>
+
+<body>
+    <script>
+        $(document).ready( function() {
+            $.get("https://mindicador.cl/api/dolar",function(data) {
+                var valor_dolar = data.serie[0].valor;
+                $("#dolar").html(valor_dolar);
+            });
+        });
+    </script>
+    <!-- cabecera de la pagina -->
+    <header>
+        <!-- contenedor que almacena el titulo MIS PERRIS y el Menu-->
+        <div class="contenedor">
+            <h1 class="icon-guidedog">Mis Perris</h1>
+            <!-- control que permite visualizar el menu lateral (MOVIL)-->
+            <input type="checkbox" name="" id="menu-bar">
+            <label class="icon-th-list" for="menu-bar"></label>
+            <!-- menu -->
+            <nav class="menu">
+                <a href="{% url 'IND' %}">Inicio</a>
+                <a href="{% url 'GALE' %}">Galeria</a>
+                <a href="{% url 'FORMU' %}">Formulario</a>
+                <a href="">Quienes Somos</a>
+                <a href="">Contacto</a>
+                <a href="{% url 'FILTROCATE' 'Gatos' %}">Galeria Gatos</a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'ADMINUSUARIO' %}">Mis Mascotas Adoptadas</a>
+                    <a href="{% url 'REG' %}">Admi. Mascotas</a> 
+                    <a href="{% url 'CERRAR' %}">Cerrar Sesion</a>
+                    <a href="">Bienvenido: {{user.first_name}} {{user.last_name}}</a>                
+                {% else %}
+                    <a href="{% url 'LOGIN' %}">Login</a>
+                    <a href="{% url 'CREARU' %}">Registrar Usuario</a>
+                {% endif %}
+
+                
+                
+            </nav>
+        </div>
+    </header>
+    <!--sector del main (contenido de la pagina )-->
+    <main>
+        Dolar:<div id="dolar" style="color: red;"></div>
+        <!-- banner superior con imagen del perro y texto flotando sobre ella -->
+        <section id="banner">
+            <img src="{% static 'img/perro1.jpg' %}" alt="">
+            <div class="contenedor">
+                <h2>Mascotas felices en mis perris</h2>
+                <p>Cual es la mejor mascota para usted</p>
+                <a href="">Leer Mas</a>
+            </div>
+        </section>
+        <!-- region editable -->
+        {% block contenido %}
+        
+        {% endblock contenido %}
+
+    </main>
+    <!-- sector del pie de pagina-->
+    <footer>
+        <div class="contenedor">
+            <p>Mis Perris - Desarrollo Web</p>
+        </div>
+    </footer>
+    {% block js %}
+    
+    {% endblock js %}
+</body>
+
+</html>

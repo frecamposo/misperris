@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+{% endblock css %}
+{% block contenido %}
+<!-- sector de bienvenida-->
+<section id="bienvenida">
+    <h2>Ficha de Adopcion de Mascota</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique excepturi voluptate, quidem ipsa
+        velit, laboriosam at, aperiam quibusdam recusandae vero molestiae illo. Repellendus in amet nihil
+        necessitatibus, error voluptatum a.</p>
+</section>
+<!-- seccion de blog de los perros -->
+<section id="blog">
+    <h3>Informacion de la Mascota</h3>
+    <div class="contenedor">
+        <article>
+            <img src="{{mascota.imagen.url}}" alt="">
+            <h4>Nombre:{{mascota.nombre}}</h4>
+            <h4>Edad:{{mascota.edad}}</h4>
+            <h4>Descripcion:{{mascota.descripcion}}</h4>
+            <h4>Categoria:{{mascota.categoria.nombre}}</h4>
+            {% if user.is_authenticated %}
+            <div>
+                <p>Usuario {{user.first_name}} desea adoptarme</p>
+                <button onclick="javascript:location.href='/adoptar/{{mascota.nombre}}/'">Adoptar</button>
+            </div>
+            {% endif %}
+
+
+        </article>
+        <!--galeria-->
+        <div style="width: 250px;height: 250px;margin-top: 15px;">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <img src="{% static 'img/log.png' %}" class="d-block w-100" width="250px" height="250px"
+                            alt="...">
+                    </div>
+                    {% for reg in galeria %}
+                    <div class="carousel-item">
+                        <img src="{{reg.imagen.url}}" width="250px" height="250px" class="d-block w-100" alt="...">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div style="text-align: center;color: red;">
+    {{mensaje}}
+</div>
+
+{% endblock contenido %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+{% endblock js %}

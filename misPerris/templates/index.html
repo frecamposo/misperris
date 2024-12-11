@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+{% endblock css %}
+
+{% block contenido %}
+<!-- sector de bienvenida-->
+<section id="bienvenida">
+    <h2>Bienvenido a nuestro club</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique excepturi voluptate, quidem ipsa
+        velit, laboriosam at, aperiam quibusdam recusandae vero molestiae illo. Repellendus in amet nihil
+        necessitatibus, error voluptatum a.</p>
+</section>
+<!-- seccion de blog de los perros -->
+<section id="blog">
+    <h3>lo utimo de nuestro blog</h3>
+    <div class="contenedor">
+        <article>
+            <img src="{% static 'img/perro2.jpg' %}" alt="">
+            <h4>Perrunos son amigos</h4>
+        </article>
+        <article>
+            <img src="{% static 'img/perro3.png' %}" alt="">
+            <h4>Simpatia perruna</h4>
+        </article>
+        <article>
+            <img src="{% static 'img/perro4.jpg' %}" alt="">
+            <h4>la linda mascota</h4>
+        </article>
+    </div>
+</section>
+<!-- seccion de blog para filtrar por categoria -->
+<section id="info">
+    <h3>Filtrar mascotas por las diferentes categorias</h3>
+    <div class="contenedor">
+        {% for reg in categorias %}
+        <article>
+            <a href="{% url 'FILTROCATE' reg.nombre %}">
+                <img src="{{reg.imagen.url}}" alt="">
+            </a>
+            <h4>Categoria {{reg.nombre}}</h4>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+<!-- carrusel de imagenes -->
+<section>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>
+        </div>
+
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+                <img src="{% static 'img/perro2.jpg' %}" class="d-block w-100" height="480px" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Algunas de las Mascotas de la Galeria de Mis Perris</h5>
+                    
+                </div>
+            </div>
+            
+            {% for reg in mascotas %}
+                        
+            <div class="carousel-item">
+                <img src="{{reg.imagen.url}}" class="d-block w-100" height="480px" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{reg.nombre}}</h5>
+                    <p>{{reg.descripcion}}</p>
+                    <button class="btn btn-primary" onclick="javascript:location.href='/ficha/{{reg.nombre}}/'">Ver Ficha</button>
+                </div>
+            </div>
+            
+            {% endfor %}
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+
+    </div>
+</section>
+
+{% endblock contenido %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+{% endblock js %}

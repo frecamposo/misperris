@@ -1,0 +1,35 @@
+
+#banner img{
+    width: 100%;
+}
+
+#banner .contenedor{
+    position: absolute;
+    top:20%;
+    left:10%;
+    width: 60%;
+    color: white;
+    font-family: cursive;
+    
+}
+
+#banner .contenedor h2{
+    font-size: 29px;
+}
+
+#banner .contenedor a{
+    color: teal;
+    text-decoration: none;
+    display: block;
+    width: 100px;
+    margin-top: 25px;
+    padding: 10px;
+    background: white;
+    border-radius: 7px;
+    border: solid 3px tomato;
+}
+
+#banner .contenedor a:hover{
+    background: tomato;
+    border: solid 3px white;
+}

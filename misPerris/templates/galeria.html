@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'dist/css/lightbox.css' %}">
+{% endblock css %}
+
+{% block contenido %}
+<!-- sector de bienvenida-->
+<section id="bienvenida">
+    <h2>Galeria de imgagenes de animalitos</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique excepturi voluptate, quidem ipsa
+        velit, laboriosam at, aperiam quibusdam recusandae vero molestiae illo. Repellendus in amet nihil
+        necessitatibus, error voluptatum a.</p>
+
+    <form action="{% url 'FILTROC' %}" method="post">
+        {% csrf_token %}
+        Filtro por Categoria:
+        <select name="cboCategoria" id="cboCategoria">
+            {% for reg in categorias %}
+            <option>{{reg.nombre}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Filtrar">
+    </form>
+
+    <form action="{% url 'BUSCARN' %}" method="post">
+        {% csrf_token %}
+        Busqueda Nombre de Mascota:
+        <input type="text" name="txtNombre" id="txtNombre">
+        <input type="submit" value="Buscar">
+    </form>
+
+    <form action="{% url 'FILTROD' %}" method="post">
+        {% csrf_token %}
+        Busqueda por descripcion:
+        <input type="text" name="txtDesc" id="txtDesc">
+        <input type="submit" value="Buscar">
+    </form>
+
+</section>
+<!-- seccion de blog de los perros -->
+<section id="blog">
+    <h3>los ultimos animalitos para adopcion</h3>
+    <div class="contenedor">
+        {% for reg in mascotas %}
+        <article>
+            <a href="{{reg.imagen.url}}" data-lightbox="perros" data-title="lindo">
+                <img src="{{reg.imagen.url}}" alt="">
+            </a>
+            <h4>{{reg.nombre}}</h4>
+            <h5>
+                <a href="{% url 'FICHAM' reg.nombre %}">Ficha</a>
+            </h5>
+        </article>
+        {% endfor %}
+    </div>
+    <div style="text-align: center;color: red;font-size: xx-large;">
+        {{cantidad}}
+    </div>
+</section>
+{% endblock contenido %}
+
+{% block js %}
+<script src="{% static 'dist/js/lightbox-plus-jquery.js' %}"></script>
+{% endblock js %}

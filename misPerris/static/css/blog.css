@@ -1,0 +1,27 @@
+
+#blog {
+    font-family: cursive;
+    text-align: center;
+}
+
+#blog .contenedor img{
+    width: 350px;
+    height: 250px;
+    border:solid 3px tomato;
+    border-radius: 20px;
+}
+
+#blog .contenedor{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+#blog .contenedor article{
+    margin: 10px;
+}
+
+#blog .contenedor img:hover{
+    filter: opacity(0.5);
+}
